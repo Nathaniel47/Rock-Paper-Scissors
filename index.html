@@ -4,10 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="script.js" defer></script>
+    <style>
+        #results{
+            white-space: pre-line;
+        }
+
+        #results span {
+  display: block;
+  margin-bottom: 6px;
+}
+
+
+        #container{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+
+
+        }
+
+        #header{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-weight: bold;
+        }
+
+        #scoreBoard{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
+     
+   <div id="container">
+    <h1 id="header">Let's Play The Game!</h1>
+
+    <div>
+      <button id="rock">Rock</button>
+      <button id="paper">Paper</button>
+      <button id="scissors">Scissors</button>
+    </div>
     
-<script src="script.js"></script>
+    <div>
+       <h2 id="scoreBoard">Score Board</h2>
+    </div>
+    
+    
+    <div id="results"></div>
+   </div>
+    
+    
+
 
 </body>
 </html>

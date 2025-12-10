@@ -19,70 +19,117 @@ function getComputerChoice (){
 }
 
 
-
-function getHumanChoice(){
-    //use prompt to get user input
-    let choice = prompt("Input your choice")
-    return choice
-}
+const results = document.querySelector('#results');
 
 
 
-function playRound(humanChoice, computerChoice){
+
+function playRound(humanChoice){
     humanChoice = humanChoice.toLowerCase();
+    let computerChoice = getComputerChoice();
+
+    const commentSpan = document.createElement('span');
 
     if (humanChoice === computerChoice) {
-        console.log("There was a tie!")
+        
+        commentSpan.textContent = "There was a tie! \n ";
+        results.appendChild(commentSpan);
         humanScore++;
         computerScore++;
     } 
     else if (humanChoice === "rock" && computerChoice === "paper"){
-        console.log("You lose! Paper beats Rock")
+        commentSpan.textContent = "You lose! Paper beats Rock \n ";
+        results.appendChild(commentSpan);
         computerScore++;
     }
     else if (humanChoice === "paper" && computerChoice === "scissors"){
-        console.log("You lose! Scissors beats Paper")
+        commentSpan.textContent = "You lose! Scissors beats Paper \n ";
+        results.appendChild(commentSpan);
         computerScore++;
     }
     else if (humanChoice === "scissors" && computerChoice === "rock"){
-        console.log("You lose! Rock beats Scissors")
+        commentSpan.textContent = "You lose! Rock beats Scissors \n ";
+        results.appendChild(commentSpan);
         computerScore++;
     }
     else if (humanChoice === "paper" && computerChoice == "rock"){
-        console.log("You win! Paper beats Rock")
+        commentSpan.textContent = "You win! Paper beats Rock \n ";
+        results.appendChild(commentSpan);
         humanScore++;
     }
      else if (humanChoice === "scissors" && computerChoice === "paper"){
-        console.log("You win! Scissors beats Paper")
+        commentSpan.textContent = "You win! Scissors beats Paper \n ";
+        results.appendChild(commentSpan);
         humanScore++;
     }
     else{
-        console.log("You win! Rock beats Scissors")
+        commentSpan.textContent = "You win! Rock beats Scissors \n ";
+        results.appendChild(commentSpan);
         humanScore++;
     }
 
-}
+};
 
-
-
+const scoreSpan = document.createElement('span');
+scoreSpan.style.cssText = 'background-color:green; font-weight: bold; color: white; padding: 10px; margin: 10px; border-radius: 10px; display: block;';
 
 function playGame(){
-for (let i = 1; i <= 5; i++) {
-let humanChoice = getHumanChoice();
-let computerChoice = getComputerChoice();
-
-playRound(humanChoice, computerChoice);
-}
-
 if (computerScore > humanScore){
-    alert(`Computer wins with a score of ${computerScore} against ${humanScore}`)
+    scoreSpan.textContent = ` \n Computer wins with a score of ${computerScore} against ${humanScore}`;
+
+    results.appendChild(scoreSpan);
 }
 else if (humanScore > computerScore){
-    alert(`You win with a score of ${humanScore} against ${computerScore}`)
+    scoreSpan.textContent = `You win with a score of ${humanScore} against ${computerScore}`;
+
+    results.appendChild(scoreSpan);
 }
 else {
-    alert(`Both wins with a score of ${humanScore}:${computerScore}`)
-}
-}
+    scoreSpan.textContent = `It's a tie! With a score of ${humanScore}:${computerScore}`;
 
-playGame();
+    results.appendChild(scoreSpan);
+}
+};
+
+
+
+const rockBtn = document.querySelector("#rock");
+rockBtn.addEventListener('click',() =>{ 
+    playRound('rock');
+    if (computerScore === 5 || humanScore === 5){
+    playGame();
+
+    setTimeout(() => {results.innerHTML = '';}, 5000);
+
+    computerScore = 0;
+    humanScore = 0;
+}
+});
+
+const paperBtn = document.querySelector("#paper");
+paperBtn.addEventListener('click',() =>{ 
+    playRound('paper');
+    if (computerScore === 5 || humanScore === 5){
+    playGame();
+    
+    setTimeout(() => {results.innerHTML = '';}, 5000);
+
+    computerScore = 0;
+    humanScore = 0;
+
+}
+});
+
+const scissorsBtn = document.querySelector("#scissors");
+scissorsBtn.addEventListener('click',() =>{ 
+    playRound('scissors');
+    if (computerScore === 5 || humanScore === 5){
+    playGame();
+
+    setTimeout(() => {results.innerHTML = '';}, 5000);
+        
+    computerScore = 0;
+    humanScore = 0;
+
+}
+});
